@@ -14,7 +14,7 @@
 			<li><a href="#">Homme</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="<?php echo base_url('Home/login');?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			<li><a href="<?php echo base_url('index.php/Home/login');?>"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 		</ul>
 	</div>
 </nav>

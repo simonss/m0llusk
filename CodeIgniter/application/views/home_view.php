@@ -10,6 +10,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<img class="img-responsive" src="/images/paevakad.png" alt="Chania">
+<img class="img-responsive" src="<?php echo base_url('images/paevakad.png');?>" alt="Chania">
 </body>
 </html>
