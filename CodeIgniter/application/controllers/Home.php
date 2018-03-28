@@ -20,12 +20,18 @@ class Home extends CI_Controller {
         $this->load->view('navbar_view');
 
         $toidud = $this->data_model->get_toidud();
-		$this->load->view('sisu_view', array('toidud' => $toidud));
+		$this->load->view('täna_view', array('toidud' => $toidud));
 	}
 	public function login(){
 		$this->load->view('home_view');
         $this->load->view('navbar_view');
 		$this->load->view('login_view');
+	}
+
+	public function homme(){
+		$this->load->view('home_view');
+		$this->load->view('navbar_view');
+		$this->load->view('homme_view');
 	}
 
 	public function login_submit() {
