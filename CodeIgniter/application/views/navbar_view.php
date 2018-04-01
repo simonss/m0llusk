@@ -14,6 +14,7 @@
                 echo         "<ul class=\"nav navbar-left\">
                             <li style=\"color: grey\"> logitud sisse kui $name </li>
                             </ul>";
+
             }
 
 
@@ -31,10 +32,11 @@
 		<ul class="nav navbar-nav navbar-right">
 
             <?php if ($loggedIn) {
-                echo "<li><a href=\"".base_url('index.php/Home/logout')."\" onclick=\"signOut();\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>";
-            } else {
-                echo "<li><a href=\"".base_url('index.php/Home/login')."\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>";
-            }
+                    echo "<li><a href=\"" . base_url('index.php/Home/logout') . "\" onclick=\"signOut();\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>";
+            }else {
+                    echo "<li><a href=\"" . base_url('index.php/Home/login') . "\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>";
+                }
+
             ?>
 		</ul>
 	</div>

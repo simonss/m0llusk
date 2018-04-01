@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 23, 2018 at 11:12 PM
+-- Generation Time: Apr 01, 2018 at 12:09 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -33,16 +33,23 @@ CREATE TABLE IF NOT EXISTS `login` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_estonian_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_estonian_ci NOT NULL,
+  `usertype` enum('tavakasutaja','arikasutaja') COLLATE utf8_estonian_ci NOT NULL,
+  `businessname` varchar(255) COLLATE utf8_estonian_ci DEFAULT NULL,
+  `placename` varchar(255) COLLATE utf8_estonian_ci DEFAULT NULL,
+  `regcode` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
 
 --
 -- Dumping data for table `login`
 --
 
-INSERT INTO `login` (`id`, `name`, `password`) VALUES
-(1, 'kroon@lh.s', 'qwerty'),
-(3, 'm@h.l', 'asdfg');
+INSERT INTO `login` (`id`, `name`, `password`, `usertype`, `businessname`, `placename`, `regcode`) VALUES
+(1, 'k@k.k', 'kkkkkk', 'tavakasutaja', NULL, NULL, NULL),
+(2, 'test@kek.com', 'peeter', 'arikasutaja', 'kek', 'test', 696969),
+(3, 'm@h.l', 'asdfgh', 'tavakasutaja', NULL, NULL, NULL),
+(4, 'a@b.c', '123456', 'arikasutaja', 'def', 'abc', 456),
+(5, 'f@f.f', '1234567', 'arikasutaja', 'test', 'mees', 251815);
 
 -- --------------------------------------------------------
 

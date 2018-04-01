@@ -42,8 +42,9 @@ class Home extends CI_Controller {
 
 	public function logout() {
         $this->session->sess_destroy();
-        $this->session->set_userdata(array('loggedIn' => false));
-        $this->index();
+        //$this->session->set_userdata(array('loggedIn' => false));
+        //$this->index();
+        redirect('/');
     }
 
 	public function homme(){
@@ -94,7 +95,7 @@ class Home extends CI_Controller {
         $this->input->post();
         $id_token = $this->input->post('idtoken'); //nüüd on käes token, mida on vaja verifitseerida
 
-        $CLIENT_ID = 'x875WgUFCfHoAyXaa_WNebZW'; //TODO muuta seda kui webhosti üles laadida
+        $CLIENT_ID = "254669445111-s780gs1euvbqq4464m5hokqq2b2ldu8e.apps.googleusercontent.com"; //TODO muuta seda kui webhosti üles laadida
         //code from https://developers.google.com/identity/sign-in/web/backend-auth
         $client = new Google_Client(array('client_id' => $CLIENT_ID));  // Specify the CLIENT_ID of the app that accesses the backend
         $payload = $client->verifyIdToken($id_token);
@@ -188,11 +189,6 @@ class Home extends CI_Controller {
 
     public function user() {
         if ($this->session->userdata('loggedIn')) {
-
-    public function logout(){
-    	$this->session->sess_destroy();
-    	redirect('/');
-	}
 
             $this->load->view('templates/header');
             $this->load->view('home_view');
