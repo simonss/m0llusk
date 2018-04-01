@@ -67,22 +67,16 @@ class Home extends CI_Controller {
         //echo $password;
         //echo $login_sucess ? 'true':'false';
 	    if ($login_sucess == true) {
-	        $this->session->set_userdata(array('loggedIn' => true));
-	        $this->session->set_userdata(array('name' => $name)); //save things to session
-            $this->session->set_userdata(array('usertype' => $this->Home_model->get_usertype($name)));
-
+	    	$newdata = array(
+	    		'name' => $name,
+				'loggedIn' => TRUE,
+				'usertype' => $this->Home_model->get_usertype($name)
+			);
+	    	$this->session->set_userdata($newdata);
 	        $shownname = $this->session->userdata('name');
 	        $data = array('shownname' => $shownname);
-
+	        $this->index();
             //$this->load->view('account_view', $data); //variable from [controller] to [view]
-            $this->load->view('templates/header');
-            $this->load->view('home_view');
-            $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
-            $this->load->view('templates/footer');
-
-            $toidud = $this->Data_model->get_toidud();
-            $this->load->view('tana_view', array('toidud' => $toidud));
-
             //TODO siia panna midagi, et saada tehtud võte 3.9 (nagu muud ei peagi selle jaoks tegema vist?)
         } else {
             $this->load->view('templates/header');
@@ -194,6 +188,11 @@ class Home extends CI_Controller {
 
     public function user() {
         if ($this->session->userdata('loggedIn')) {
+
+    public function logout(){
+    	$this->session->sess_destroy();
+    	redirect('/');
+	}
 
             $this->load->view('templates/header');
             $this->load->view('home_view');
