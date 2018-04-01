@@ -128,6 +128,7 @@ class Home extends CI_Controller {
         $usertype = $this->input->post('usertype');
 
         $email_not_in_use = $this->Home_model->get_email_already_exists($email);
+        $this->send_email($email);
 
         if ($usertype === 'arikasutaja') {
             $business_name = $this->input->post('firma_nimi');
@@ -214,5 +215,29 @@ class Home extends CI_Controller {
             $this->index();
         }
     }
+
+    public function send_email($email){
+		$this->load->library('email');
+
+		$config = array(
+			'protocol'  => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'paevakad@gmail.com',
+			'smtp_pass' => 'Paevakad123',
+			'mailtype'  => 'html',
+			'charset'   => 'utf-8'
+		);
+		$this->email->initialize($config);
+		$this->email->set_mailtype("html");
+		$this->email->set_newline("\r\n");
+		$this->email->to($email);
+		$this->email->from('paevakad@gmail.com','Päevakad');
+		$this->email->subject('Registreerimine kasutajaks!');
+		$this->email->message("Tere tulemast! Olete edukalt registreerunud Päevakad veebilehe kasutajaks");
+
+		$this->email->send();
+
+	}
 
 }

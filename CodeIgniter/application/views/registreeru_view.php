@@ -47,4 +47,10 @@
             <button type="submit" class="btn btn-default">Registreeru</button>
         </div>
     </div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 </form>
