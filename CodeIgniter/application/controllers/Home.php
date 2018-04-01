@@ -46,12 +46,16 @@ class Home extends CI_Controller {
         //echo $password;
         //echo $login_sucess ? 'true':'false';
 	    if ($login_sucess == true) {
-	        $this->session->set_userdata(array('name' => $name)); //save things to session
-
+	    	$newdata = array(
+	    		'name' => $name,
+				'logged_in' => TRUE,
+				//todo siia veel lisada äri/era
+			);
+	    	$this->session->set_userdata($newdata);
 	        $shownname = $this->session->userdata('name');
 	        $data = array('shownname' => $shownname);
-            $this->load->view('account_view', $data); //variable from [controller] to [view]
-
+	        $this->index();
+            //$this->load->view('account_view', $data); //variable from [controller] to [view]
             //TODO siia panna midagi, et saada tehtud võte 3.9 (nagu muud ei peagi selle jaoks tegema vist?)
         } else {
             $this->load->view('home_view');
@@ -92,6 +96,11 @@ class Home extends CI_Controller {
         }
 
     }
+
+    public function logout(){
+    	$this->session->sess_destroy();
+    	redirect('/');
+	}
 
 
 }
