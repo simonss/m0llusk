@@ -44,4 +44,15 @@ class Home_model extends CI_Model {
         $data = array('name' => $name, 'password' => $password, 'usertype' => 'arikasutaja', 'businessname' => $business_name, 'placename' => $place_name, 'regcode' => $regcode);
         $this->db->insert('login', $data);
     }
+
+    public function get_googleuser_exists($userid) {
+        $sql = "SELECT * FROM googlelogin WHERE googleid = ?";
+        $query = $this->db->query($sql, array($userid));
+        return ($query->num_rows() > 0);
+    }
+
+    public function put_googleuser($name, $googleid) {
+        $data = array('email' => $name, 'usertype' => 'tavakasutaja', 'googleid' => $googleid);
+        $this->db->insert('googlelogin', $data);
+    }
 }

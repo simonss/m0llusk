@@ -7,10 +7,12 @@ function kasutajatyyp() {
                 document.getElementById("business1").style.display="block";
                 document.getElementById("business2").style.display="block";
                 document.getElementById("business3").style.display="block";
+                document.getElementById("googlelogin").style.display="none";
             } else if (radios[i].value === "tavakasutaja") {
                 document.getElementById("business1").style.display="none";
                 document.getElementById("business2").style.display="none";
                 document.getElementById("business3").style.display="none";
+                document.getElementById("googlelogin").style.display="block";
             }
             break;
         }

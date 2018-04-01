@@ -20,9 +20,6 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-	    //echo ($this->session->userdata('loggedIn')) ? "true" : "false";'
-        echo $this->session->userdata('userid');
-
         $this->load->view('templates/header');
 		$this->load->view('home_view');
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
@@ -57,6 +54,7 @@ class Home extends CI_Controller {
 	}
 
 	public function login_submit() {
+
         //initialize form helper
         $this->input->post();
 
@@ -74,8 +72,8 @@ class Home extends CI_Controller {
 				'usertype' => $this->Home_model->get_usertype($name)
 			);
 	    	$this->session->set_userdata($newdata);
-	        $shownname = $this->session->userdata('name');
-	        $data = array('shownname' => $shownname);
+	        //$shownname = $this->session->userdata('name');
+	        //$data = array('shownname' => $shownname);
 	        $this->index();
             //$this->load->view('account_view', $data); //variable from [controller] to [view]
             //TODO siia panna midagi, et saada tehtud võte 3.9 (nagu muud ei peagi selle jaoks tegema vist?)
@@ -92,19 +90,35 @@ class Home extends CI_Controller {
     }
 
     public function login_google() {
+
         $this->input->post();
         $id_token = $this->input->post('idtoken'); //nüüd on käes token, mida on vaja verifitseerida
+        $email = $this->input->post('email');
 
         $CLIENT_ID = "254669445111-s780gs1euvbqq4464m5hokqq2b2ldu8e.apps.googleusercontent.com"; //TODO muuta seda kui webhosti üles laadida
         //code from https://developers.google.com/identity/sign-in/web/backend-auth
         $client = new Google_Client(array('client_id' => $CLIENT_ID));  // Specify the CLIENT_ID of the app that accesses the backend
         $payload = $client->verifyIdToken($id_token);
-        echo $payload ? 'true':'false';
         if ($payload) {
             $userid = $payload['sub'];
             $this->session->set_userdata(array('userid' => $userid));
+
+            if ($this->Home_model->get_googleuser_exists($userid)) {
+                echo "exists";
+                //hetkel saab google abil logida ainult tavakasutajana
+                $this->session->set_userdata(array('name' => $email, 'loggedIn' => true, 'usertype' => 'tavakasutaja'));
+                $this -> index();
+
+            } else {
+                    echo "create new";
+                    $this->Home_model->put_googleuser($email, $userid);
+                    $this->session->set_userdata(array('name' => $email, 'loggedIn' => true, 'usertype' => 'tavakasutaja'));
+                    $this -> index();
+
+            }
+
         } else {
-            echo "sisselogimine ebaõnnestus";
+            echo "autenteerimine ebaõnnestus";
         }
     }
 

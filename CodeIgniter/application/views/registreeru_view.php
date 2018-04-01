@@ -48,3 +48,9 @@
         </div>
     </div>
 </form>
+
+<div id="googlelogin" style="display: block">
+    või logi sisse Google kaudu (sorry see on halvasti vormindatud) (ainult tavakasutajatele)
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+</div>
+
