@@ -1,12 +1,3 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
 <div>
     <?php
     if (!empty($message)) echo $message;
@@ -23,13 +14,13 @@
             } else {
                 echo 'placeholder="Enter email"' ;
             }
-            ?>>
+            ?> required>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="control-label col-sm-2" for="pwd">Password:</label>
 		<div class="col-sm-10">
-			<input type="password" class="form-control" name="password" placeholder="Enter password">
+			<input type="password" class="form-control" name="password" placeholder="Enter password" required>
 		</div>
 	</div>
 	<div class="form-group">
@@ -45,8 +36,8 @@
 		</div>
 	</div>
 </form>
+või logi sisse Google kaudu (sorry see on halvasti vormindatud)
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
 <div class="col-sm-offset-1">
     <a href="<?php echo base_url('index.php/Home/register');?>">Registreeru</a>
 </div>
-</body>
-</html>

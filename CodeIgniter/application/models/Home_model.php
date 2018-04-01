@@ -25,9 +25,23 @@ class Home_model extends CI_Model {
         return !($query->num_rows() > 0);
     }
 
+    public function get_usertype($name) {
+        $sql = "SELECT usertype FROM login WHERE name = ?";
+        $query = $this->db->query($sql, array($name));
+        $row = $query->row();
+        if (isset($row)) {
+            return $row->usertype;
+        }
+    }
+
     public function put_new_user($name, $password) {
         //$sql = "INSERT INTO login (name,password) VALUES (".$this->db->escape($name).", ".;
-        $data = array('name' => $name, 'password' => $password);
+        $data = array('name' => $name, 'password' => $password, 'usertype' => 'tavakasutaja');
+        $this->db->insert('login', $data);
+    }
+
+    public function put_new_business($name, $password, $business_name, $place_name, $regcode) {
+        $data = array('name' => $name, 'password' => $password, 'usertype' => 'arikasutaja', 'businessname' => $business_name, 'placename' => $place_name, 'regcode' => $regcode);
         $this->db->insert('login', $data);
     }
 }

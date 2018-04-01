@@ -25,11 +25,6 @@ class Data_model extends CI_Model {
         $sql = "SELECT * FROM toidud"; //ORDER BY/WHERE et kasutada otsingut/filtreid?
         $query = $this->db->query($sql);
 
-        /*$config = array(
-          'kook' => 'ttttttttt',
-          'hind' => 'hind',
-            'toidukoht' => 'toidukoht'
-        );*/
 
         $result = $this->dbutil->xml_from_result($query);
         //write_file('xml_file.xml', $result);
