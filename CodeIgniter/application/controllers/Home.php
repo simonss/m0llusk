@@ -21,17 +21,15 @@ class Home extends CI_Controller {
 	public function index()
 	{
         $this->load->view('templates/header', array('script' => 'loadTartu()'));
-		$this->load->view('home_view');
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
 
         $toidud = $this->Data_model->get_toidud("tartu");
 		$this->load->view('tana_view', array('toidud' => $toidud));
         $this->load->view('templates/footer');
-	}
+}
 	public function login(){
 
         $this->load->view('templates/header');
-		$this->load->view('home_view');
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
 		$this->load->view('login_view');
         $this->load->view('templates/footer');
@@ -47,7 +45,6 @@ class Home extends CI_Controller {
 	public function homme(){
 
         $this->load->view('templates/header');
-		$this->load->view('home_view');
 		$this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
 		$this->load->view('homme_view');
         $this->load->view('templates/footer');
@@ -69,17 +66,16 @@ class Home extends CI_Controller {
 	    	$newdata = array(
 	    		'name' => $name,
 				'loggedIn' => TRUE,
-				'usertype' => $this->Home_model->get_usertype($name)
+				'usertype' => $this->Home_model->get_usertype($name),
+				'businessname' => $this->Home_model->get_businessname($name)
 			);
 	    	$this->session->set_userdata($newdata);
 	        //$shownname = $this->session->userdata('name');
 	        //$data = array('shownname' => $shownname);
 	        $this->index();
             //$this->load->view('account_view', $data); //variable from [controller] to [view]
-            //TODO siia panna midagi, et saada tehtud võte 3.9 (nagu muud ei peagi selle jaoks tegema vist?)
         } else {
             $this->load->view('templates/header');
-            $this->load->view('home_view');
             $this->load->view('templates/footer');
             //$this->load->view('navbar_view');
             //$this->load->view('login_view');
@@ -124,11 +120,25 @@ class Home extends CI_Controller {
 
     public function register() {
         $this->load->view('templates/header');
-        $this->load->view('home_view');
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
         $this->load->view('registreeru_view');
         $this->load->view('templates/footer');
 
+    }
+
+    public function lisa_toit(){
+    	$this->input->post();
+
+    	$foodName = $this->input->post('toidunimi');
+    	$price = $this->input->post('hind');
+    	$placeName = $_SESSION["businessname"];
+    	$info = $this->input->post('lisainfo');
+    	$stars = 30;
+    	echo base_url('index.php/upload/do_upload');
+    	//echo form_open_multipart('upload/do_upload');
+
+		$this->Home_model->put_new_food($foodName, $price, $placeName, $info, $stars);
+		$this->index();
     }
 
     public function register_submit()
@@ -142,7 +152,6 @@ class Home extends CI_Controller {
         $usertype = $this->input->post('usertype');
 
         $email_not_in_use = $this->Home_model->get_email_already_exists($email);
-        $this->send_email($email);
 
         if ($usertype === 'arikasutaja') {
             $business_name = $this->input->post('firma_nimi');
@@ -153,10 +162,10 @@ class Home extends CI_Controller {
             if (strlen($password) > 5 && $password == $password2 &&$email_not_in_use && !empty($business_name) && !empty($place_name) && !empty($reg_code)) {
                 $this->Home_model->put_new_business($email, $password, $business_name, $place_name, $reg_code);
                 $this->load->view('templates/header');
-                $this->load->view('home_view');
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
                 $this->load->view('login_view', array('email' => $email, 'message' => 'Uue Ärikasutaja Registreeerimine õnnestus'));
                 $this->load->view('templates/footer');
+				$this->send_email($email);
             } else {
                 echo "midagi läks valesti (parool või email ei sobinud / kõik väljad polnud täidetud)";
             }
@@ -166,10 +175,10 @@ class Home extends CI_Controller {
             if (strlen($password) > 5 && $password == $password2 && $email_not_in_use) {
                 $this->Home_model->put_new_user($email, $password);
                 $this->load->view('templates/header');
-                $this->load->view('home_view');
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
                 $this->load->view('login_view', array('email' => $email, 'message' => 'Registreeerimine õnnestus'));
                 $this->load->view('templates/footer');
+				$this->send_email($email);
             } else {
                 echo "parool või email ei sobinud";
             }
@@ -183,7 +192,6 @@ class Home extends CI_Controller {
             if ($action === 'change') {
 
                 $this->load->view('templates/header');
-                $this->load->view('home_view');
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
                 $this->load->view('lemmikud_muuda_view');
                 $this->load->view('templates/footer');
@@ -191,7 +199,6 @@ class Home extends CI_Controller {
             } else { //$action === 'show'
 
                 $this->load->view('templates/header');
-                $this->load->view('home_view');
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
                 $toidud = $this->Data_model->get_toidud("tartu");  //TODO siia panna filter
                 $this->load->view('lemmikud_view', array('toidud' => $toidud));
@@ -206,7 +213,6 @@ class Home extends CI_Controller {
         if ($this->session->userdata('loggedIn')) {
 
             $this->load->view('templates/header');
-            $this->load->view('home_view');
             $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
             $this->load->view('sinuandmed_view', array('usertype' => $this->session->userdata('usertype')));
             $this->load->view('templates/footer');
@@ -220,7 +226,6 @@ class Home extends CI_Controller {
         if ($this->session->userdata('loggedIn') && $this->session->userdata('usertype') === 'arikasutaja') {
 
             $this->load->view('templates/header');
-            $this->load->view('home_view');
             $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
             $this->load->view('sinu_toidud_view');
             $this->load->view('templates/footer');
@@ -231,8 +236,7 @@ class Home extends CI_Controller {
     }
 
     public function send_email($email){
-        echo "email sending temporarily disabled";
-		/*$this->load->library('email');
+		$this->load->library('email');
 
 		$config = array(
 			'protocol'  => 'smtp',
@@ -251,9 +255,7 @@ class Home extends CI_Controller {
 		$this->email->subject('Registreerimine kasutajaks!');
 		$this->email->message("Tere tulemast! Olete edukalt registreerunud Päevakad veebilehe kasutajaks");
 
-		$this->email->send();*/
-
-	}
+		$this->email->send();
 
 	public function ajax_load_tallinn() {
         $toidud = $this->Data_model->get_toidud("tallinn");

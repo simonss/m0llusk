@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
+<nav class="navbar navbar-inverse"  data-offset-top="197">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
 			<li><a href="<?php echo base_url('index.php/Home') ?>"  <?php if($this->uri->segment(1)=="Home"){echo 'class="active"';}?>>Täna</a></li>
@@ -11,19 +11,12 @@
             if ($usertype === 'arikasutaja') {
                 echo "<li><a href=\"".base_url('index.php/Home/foods')."\">Sinu toidud</a></li>";
             }
-                echo         "<ul class=\"nav navbar-left\">
+                echo         "<ul class=\"nav navbar-right\">
                             <li style=\"color: grey\"> logitud sisse kui $name </li>
                             </ul>";
 
             }
-
-
             ?>
-
-
-
-
-
 
         </ul>
 
