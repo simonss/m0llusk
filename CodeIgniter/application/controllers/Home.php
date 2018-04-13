@@ -20,7 +20,7 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->view('templates/header', array('script' => 'loadTartu()'));
+        $this->load->view('templates/header', array('script' => 'loadCity()'));
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
 
         $toidud = $this->Data_model->get_toidud("tartu");
@@ -235,27 +235,29 @@ class Home extends CI_Controller {
         }
     }
 
-    public function send_email($email){
-		$this->load->library('email');
+    public function send_email($email)
+    {
+        $this->load->library('email');
 
-		$config = array(
-			'protocol'  => 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_port' => 465,
-			'smtp_user' => 'paevakad@gmail.com',
-			'smtp_pass' => 'Paevakad123',
-			'mailtype'  => 'html',
-			'charset'   => 'utf-8'
-		);
-		$this->email->initialize($config);
-		$this->email->set_mailtype("html");
-		$this->email->set_newline("\r\n");
-		$this->email->to($email);
-		$this->email->from('paevakad@gmail.com','Päevakad');
-		$this->email->subject('Registreerimine kasutajaks!');
-		$this->email->message("Tere tulemast! Olete edukalt registreerunud Päevakad veebilehe kasutajaks");
+        $config = array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'paevakad@gmail.com',
+            'smtp_pass' => 'Paevakad123',
+            'mailtype' => 'html',
+            'charset' => 'utf-8'
+        );
+        $this->email->initialize($config);
+        $this->email->set_mailtype("html");
+        $this->email->set_newline("\r\n");
+        $this->email->to($email);
+        $this->email->from('paevakad@gmail.com', 'Päevakad');
+        $this->email->subject('Registreerimine kasutajaks!');
+        $this->email->message("Tere tulemast! Olete edukalt registreerunud Päevakad veebilehe kasutajaks");
 
-		$this->email->send();
+        $this->email->send();
+    }
 
 	public function ajax_load_tallinn() {
         $toidud = $this->Data_model->get_toidud("tallinn");

@@ -18,6 +18,7 @@ function loadTallinn() {
         if (this.readyState == 4 && this.status == 200) {
             parseXML(this);
             console.log("request done.");
+            location.href="#Tallinn";
         }
     };
     xhttp.open("GET", "http://localhost/Codeigniter/index.php/Home/ajax_load_tallinn", true);
@@ -31,6 +32,7 @@ function loadTartu() {
         if (this.readyState == 4 && this.status == 200) {
             parseXML(this);
             console.log("request done.");
+            location.href="#Tartu";
         }
     };
     xhttp.open("GET", "http://localhost/Codeigniter/index.php/Home/ajax_load_tartu", true);
@@ -54,4 +56,18 @@ function parseXML(xml) {
     }
     document.getElementById("toidud_data").innerHTML = result;
 
+}
+
+function loadCity() {
+    var hash;
+    if (window.location.href.indexOf('#') > -1)
+    {
+        hash = window.location.href.split('#')[1];
+    }
+    if (hash === "Tallinn") {
+        document.querySelector('input[type="checkbox"]').checked = true;
+        loadTallinn();
+    } else {
+        loadTartu();
+    }
 }
