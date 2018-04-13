@@ -15,3 +15,5 @@
     <script src="<?php echo base_url('scripts/googlesignout.js')?>"></script>
 </head>
 <body>
+<img class="img-responsive" style="width: 100%" src="<?php echo base_url('images/paevakad.png');?>" alt="Chania">
+
