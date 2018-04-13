@@ -20,11 +20,11 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->view('templates/header');
+        $this->load->view('templates/header', array('script' => 'loadTartu()'));
 		$this->load->view('home_view');
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
 
-        $toidud = $this->Data_model->get_toidud();
+        $toidud = $this->Data_model->get_toidud("tartu");
 		$this->load->view('tana_view', array('toidud' => $toidud));
         $this->load->view('templates/footer');
 	}
@@ -193,7 +193,7 @@ class Home extends CI_Controller {
                 $this->load->view('templates/header');
                 $this->load->view('home_view');
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
-                $toidud = $this->Data_model->get_toidud();  //TODO siia panna filter
+                $toidud = $this->Data_model->get_toidud("tartu");  //TODO siia panna filter
                 $this->load->view('lemmikud_view', array('toidud' => $toidud));
                 $this->load->view('templates/footer');
             }
@@ -231,7 +231,8 @@ class Home extends CI_Controller {
     }
 
     public function send_email($email){
-		$this->load->library('email');
+        echo "email sending temporarily disabled";
+		/*$this->load->library('email');
 
 		$config = array(
 			'protocol'  => 'smtp',
@@ -250,8 +251,18 @@ class Home extends CI_Controller {
 		$this->email->subject('Registreerimine kasutajaks!');
 		$this->email->message("Tere tulemast! Olete edukalt registreerunud Päevakad veebilehe kasutajaks");
 
-		$this->email->send();
+		$this->email->send();*/
 
 	}
+
+	public function ajax_load_tallinn() {
+        $toidud = $this->Data_model->get_toidud("tallinn");
+        echo $toidud;
+    }
+
+    public function ajax_load_tartu() {
+        $toidud = $this->Data_model->get_toidud("tartu");
+        echo $toidud;
+    }
 
 }

@@ -1,6 +1,18 @@
-<p id="test"></p>
+<script src="<?php echo base_url('scripts/locationSwitch.js')?>"></script>
+
+Tartu
+<label class="switch">
+    <input type="checkbox">
+    <div class="slider"></div>
+</label>
+Tallinn
+
+<div id="toidud_data">laadimine...</div>
+
+<p></p>
 
 <?php
+/* vana kood - nyyd teeb seda javascript (ajax) -> locationSwitch.js -> parseXML()
 
 $xml = simplexml_load_string($toidud);
 foreach ($xml->element as $item) {
@@ -15,10 +27,10 @@ foreach ($xml->element as $item) {
 					</div>
 			</div>
 		</div>";
-}
+}*/
 ?>
 
 <br>
 <br>
 
-andmebaasist tuleb XML formaadis, nagu <a href="<?php echo base_url('xml_file.xml');?>">siin</a>
+<!--andmebaasist tuleb XML formaadis, nagu <a href="<?php //echo base_url('xml_file.xml');?>">siin</a>-->

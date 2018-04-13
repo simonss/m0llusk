@@ -21,12 +21,17 @@ class Data_model extends CI_Model {
         }
     }*/
 
-    public function get_toidud() {
-        $sql = "SELECT * FROM toidud"; //ORDER BY/WHERE et kasutada otsingut/filtreid?
+    public function get_toidud($location) {
+        if ($location === "tartu") {
+            $sql = "SELECT * FROM toidud_tartu_view";
+        } else if ($location === "tallinn") {
+            $sql = "SELECT * FROM toidud_tallinn_view";
+        }
+
         $query = $this->db->query($sql);
 
-
-        $result = $this->dbutil->xml_from_result($query);
+        $result  = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
+        $result .= $this->dbutil->xml_from_result($query);
         //write_file('xml_file.xml', $result);
         return $result;
     }

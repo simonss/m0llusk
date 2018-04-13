@@ -1,1 +1,1 @@
-<img class="img-responsive" src="<?php echo base_url('images/paevakad.png');?>" alt="Chania">
+<img class="img-responsive" src="<?php echo base_url('images/paevakad.png');?>" alt="Chania" width="192" height="360">
