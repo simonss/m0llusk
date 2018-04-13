@@ -91,7 +91,7 @@ class Home extends CI_Controller {
         $id_token = $this->input->post('idtoken'); //nüüd on käes token, mida on vaja verifitseerida
         $email = $this->input->post('email');
 
-        $CLIENT_ID = "254669445111-s780gs1euvbqq4464m5hokqq2b2ldu8e.apps.googleusercontent.com"; //TODO muuta seda kui webhosti üles laadida
+        $CLIENT_ID = "305223175599-fffnntmch2cfh9s9oh3ml8mcvgmtrur2.apps.googleusercontent.com"; //TODO muuta seda kui webhosti üles laadida
         //code from https://developers.google.com/identity/sign-in/web/backend-auth
         $client = new Google_Client(array('client_id' => $CLIENT_ID));  // Specify the CLIENT_ID of the app that accesses the backend
         $payload = $client->verifyIdToken($id_token);

@@ -25,7 +25,7 @@
 		<ul class="nav navbar-nav navbar-right">
 
             <?php if ($loggedIn) {
-                    echo "<li><a href=\"" . base_url('index.php/Home/logout') . "\" onclick=\"signOut();\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>";
+                    echo "<li><a onclick=\"signOut();\"><span class=\"glyphicon glyphicon-log-out\"></span> Logout</a></li>";
             }else {
                     echo "<li><a href=\"" . base_url('index.php/Home/login') . "\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>";
                 }
