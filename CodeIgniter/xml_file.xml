@@ -1,0 +1,18 @@
+<root>
+	<element>
+		<id>1</id>
+		<toidunimi>kook</toidunimi>
+		<hind>12</hind>
+		<toidukoht>eitea</toidukoht>
+		<lisainfo>midafakki</lisainfo>
+		<hinnang>69</hinnang>
+	</element>
+	<element>
+		<id>2</id>
+		<toidunimi>praad</toidunimi>
+		<hind>123</hind>
+		<toidukoht>kooli pagar test</toidukoht>
+		<lisainfo>see on test</lisainfo>
+		<hinnang>1</hinnang>
+	</element>
+</root>

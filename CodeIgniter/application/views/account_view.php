@@ -1,0 +1,1 @@
+sisse logitud kui kasutaja: <?php echo $shownname; ?>
