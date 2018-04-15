@@ -39,5 +39,5 @@
 või logi sisse Google kaudu (sorry see on halvasti vormindatud)
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
 <div class="col-sm-offset-1">
-    <a href="<?php echo base_url('index.php/Home/register');?>">Registreeru</a>
+    <a href="<?php echo base_url('index.php/Home/register');?>" title="Registreeru">Registreeru</a>
 </div>

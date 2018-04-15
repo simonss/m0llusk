@@ -36,5 +36,19 @@ class Data_model extends CI_Model {
         return $result;
     }
 
+    public function get_count_toidud() {
+        $sql = "SELECT COUNT(toidunimi) FROM toidud_tartu_view AS count";
+        $sql2 = "SELECT COUNT(toidunimi) FROM toidud_tallinn_view AS count";
+
+        $query = $this->db->query($sql);
+        $query2 = $this->db->query($sql2);
+
+        $result = $query->row_array();
+        $result2 = $query2->row_array();
+
+        return (intval($result['COUNT(toidunimi)']) + intval($result2['COUNT(toidunimi)']));
+
+    }
+
 
 }

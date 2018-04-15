@@ -1,2 +1,2 @@
-siia tulevad <a href="https://github.com/simonss/m0llusk/blob/master/Protot%C3%BC%C3%BCp/SinuAndmed.PNG">kasutaja andmed</a> olenevalt sellest, kas tegemist on tavakasutajaga või äraikasutajaga<br>
+siia tulevad <a href="https://github.com/simonss/m0llusk/blob/master/Protot%C3%BC%C3%BCp/SinuAndmed.PNG" title="Prototüüp">kasutaja andmed</a> olenevalt sellest, kas tegemist on tavakasutajaga või äraikasutajaga<br>
 praegu on sisse logitud <?php echo $usertype; ?>

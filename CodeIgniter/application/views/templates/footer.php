@@ -7,6 +7,7 @@
 				<h2 style="color: #acada5">Päevakad</h2>
 				<p class="text-left" style="color: #acada5"><b>Aadress: </b>Juhan Liivi 2, Tartu</p>
 				<p class="text-left" style="color: #acada5"><b>Meil: </b>paevakad@gmail.com</p>
+                <p class="text-left" style="color: #acada5"><a href="<?php echo base_url('index.php/Home/statistika');?>" title="Statsistika andmete ja kasutajate kohta"><b>Statistika</b></a></p>
 			</div>
 			<div class="col-sm-6"><div id="map" style="width:100%;height: 300px;"></div></div>
 			<div class="col-sm-1"></div>

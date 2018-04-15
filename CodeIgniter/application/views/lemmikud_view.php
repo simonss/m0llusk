@@ -1,5 +1,5 @@
 <!--//seda vbolla peaks eraldi javascripti panema?-->
-<p><button type="button" onclick="location.href='<?php echo base_url('index.php/Home/favs/change');?>';">Muuda lemmikuid</button></p>
+<p><button type="button" onclick="location.href='<?php echo base_url('index.php/Home/favs/change');?>';" title="Muuda lemmikuid">Muuda lemmikuid</button></p>
 
 <?php
 

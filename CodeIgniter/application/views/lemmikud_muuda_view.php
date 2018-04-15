@@ -1,1 +1,1 @@
-siia tuleb panna <a href="https://github.com/simonss/m0llusk/blob/master/Protot%C3%BC%C3%BCp/Lemmikud_eemaldamine.PNG">lemmikute eemaldamine</a>
+siia tuleb panna <a href="https://github.com/simonss/m0llusk/blob/master/Protot%C3%BC%C3%BCp/Lemmikud_eemaldamine.PNG" title="Prototüüp">lemmikute eemaldamine</a>

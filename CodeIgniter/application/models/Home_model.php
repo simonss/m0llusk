@@ -61,4 +61,13 @@ class Home_model extends CI_Model {
         $usertype = "tavakasutaja";
         $this->db->query("call googlelogin_insert('$name','$usertype','$googleid')");
     }
+
+    public function get_businessname($name) {
+        $sql = "SELECT businessname FROM login_view WHERE name = ?";
+        $query = $this->db->query($sql, array($name));
+        $row = $query->row();
+        if (isset($row)) {
+            return $row->businessname;
+        }
+    }
 }

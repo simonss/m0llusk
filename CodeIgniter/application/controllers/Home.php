@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Home extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
@@ -14,65 +15,70 @@ class Home extends CI_Controller {
 
         //this is for google auth
         //require_once base_url('google-api-php-client-2.2.1/vendor/autoload.php');
-        require_once(APPPATH.'libraries/google-api-php-client-2.2.1/vendor/autoload.php');
+        require_once(APPPATH . 'libraries/google-api-php-client-2.2.1/vendor/autoload.php');
     }
 
 
-	public function index()
-	{
+    public function index()
+    {
         $this->load->view('templates/header', array('script' => 'loadCity()'));
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
 
         $toidud = $this->Data_model->get_toidud("tartu");
-		$this->load->view('tana_view', array('toidud' => $toidud));
+        $this->load->view('tana_view', array('toidud' => $toidud));
         $this->load->view('templates/footer');
-}
-	public function login(){
+    }
 
-        $this->load->view('templates/header');
+    public function login()
+    {
+
+        $this->load->view('templates/header', array('title' => 'Sisselogimine - '));
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
-		$this->load->view('login_view');
+        $this->load->view('login_view');
         $this->load->view('templates/footer');
-	}
+    }
 
-	public function logout() {
+    public function logout()
+    {
         $this->session->sess_destroy();
         //$this->session->set_userdata(array('loggedIn' => false));
         //$this->index();
         redirect('/');
     }
 
-	public function homme(){
+    public function homme()
+    {
 
-        $this->load->view('templates/header');
-		$this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
-		$this->load->view('homme_view');
+        $this->load->view('templates/header', array('title' => 'Homme - '));
+        $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
+        $this->load->view('homme_view');
         $this->load->view('templates/footer');
-	}
+    }
 
-	public function login_submit() {
+    public function login_submit()
+    {
 
         //initialize form helper
         $this->input->post();
 
-	    $name = $this->input->post('name');
-	    $password = $this->input->post('password');
-	    $login_sucess = $this->Home_model->get_creds($name, $password);
+        $name = $this->input->post('name');
+        $password = $this->input->post('password');
+        $login_sucess = $this->Home_model->get_creds($name, $password);
 
-	    //echo $name;
+        //echo $name;
         //echo $password;
         //echo $login_sucess ? 'true':'false';
-	    if ($login_sucess == true) {
-	    	$newdata = array(
-	    		'name' => $name,
-				'loggedIn' => TRUE,
-				'usertype' => $this->Home_model->get_usertype($name),
-				'businessname' => $this->Home_model->get_businessname($name)
-			);
-	    	$this->session->set_userdata($newdata);
-	        //$shownname = $this->session->userdata('name');
-	        //$data = array('shownname' => $shownname);
-	        $this->index();
+        if ($login_sucess == true) {
+            $newdata = array(
+                'name' => $name,
+                'loggedIn' => TRUE,
+                'usertype' => $this->Home_model->get_usertype($name),
+                'businessname' => $this->Home_model->get_businessname($name)
+            );
+            $this->session->set_userdata($newdata);
+            //$shownname = $this->session->userdata('name');
+            //$data = array('shownname' => $shownname);
+            $this->index();
             //$this->load->view('account_view', $data); //variable from [controller] to [view]
         } else {
             $this->load->view('templates/header');
@@ -85,7 +91,8 @@ class Home extends CI_Controller {
 
     }
 
-    public function login_google() {
+    public function login_google()
+    {
 
         $this->input->post();
         $id_token = $this->input->post('idtoken'); //nüüd on käes token, mida on vaja verifitseerida
@@ -103,13 +110,13 @@ class Home extends CI_Controller {
                 echo "exists";
                 //hetkel saab google abil logida ainult tavakasutajana
                 $this->session->set_userdata(array('name' => $email, 'loggedIn' => true, 'usertype' => 'tavakasutaja'));
-                $this -> index();
+                $this->index();
 
             } else {
-                    echo "create new";
-                    $this->Home_model->put_googleuser($email, $userid);
-                    $this->session->set_userdata(array('name' => $email, 'loggedIn' => true, 'usertype' => 'tavakasutaja'));
-                    $this -> index();
+                echo "create new";
+                $this->Home_model->put_googleuser($email, $userid);
+                $this->session->set_userdata(array('name' => $email, 'loggedIn' => true, 'usertype' => 'tavakasutaja'));
+                $this->index();
 
             }
 
@@ -118,27 +125,29 @@ class Home extends CI_Controller {
         }
     }
 
-    public function register() {
-        $this->load->view('templates/header');
+    public function register()
+    {
+        $this->load->view('templates/header', array('title' => 'Registreeru - '));
         $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
         $this->load->view('registreeru_view');
         $this->load->view('templates/footer');
 
     }
 
-    public function lisa_toit(){
-    	$this->input->post();
+    public function lisa_toit()
+    {
+        $this->input->post();
 
-    	$foodName = $this->input->post('toidunimi');
-    	$price = $this->input->post('hind');
-    	$placeName = $_SESSION["businessname"];
-    	$info = $this->input->post('lisainfo');
-    	$stars = 30;
-    	echo base_url('index.php/upload/do_upload');
-    	//echo form_open_multipart('upload/do_upload');
+        $foodName = $this->input->post('toidunimi');
+        $price = $this->input->post('hind');
+        $placeName = $_SESSION["businessname"];
+        $info = $this->input->post('lisainfo');
+        $stars = 30;
+        echo base_url('index.php/upload/do_upload');
+        //echo form_open_multipart('upload/do_upload');
 
-		$this->Home_model->put_new_food($foodName, $price, $placeName, $info, $stars);
-		$this->index();
+        $this->Home_model->put_new_food($foodName, $price, $placeName, $info, $stars);
+        $this->index();
     }
 
     public function register_submit()
@@ -159,13 +168,13 @@ class Home extends CI_Controller {
             $reg_code = $this->input->post('registrikood');
 
             //ilmselt mingi kontroll et ei oleks fake äri - tuleb ette kujutada et see on ka siin
-            if (strlen($password) > 5 && $password == $password2 &&$email_not_in_use && !empty($business_name) && !empty($place_name) && !empty($reg_code)) {
+            if (strlen($password) > 5 && $password == $password2 && $email_not_in_use && !empty($business_name) && !empty($place_name) && !empty($reg_code)) {
                 $this->Home_model->put_new_business($email, $password, $business_name, $place_name, $reg_code);
                 $this->load->view('templates/header');
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
                 $this->load->view('login_view', array('email' => $email, 'message' => 'Uue Ärikasutaja Registreeerimine õnnestus'));
                 $this->load->view('templates/footer');
-				$this->send_email($email);
+                $this->send_email($email);
             } else {
                 echo "midagi läks valesti (parool või email ei sobinud / kõik väljad polnud täidetud)";
             }
@@ -178,7 +187,7 @@ class Home extends CI_Controller {
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
                 $this->load->view('login_view', array('email' => $email, 'message' => 'Registreeerimine õnnestus'));
                 $this->load->view('templates/footer');
-				$this->send_email($email);
+                $this->send_email($email);
             } else {
                 echo "parool või email ei sobinud";
             }
@@ -186,19 +195,20 @@ class Home extends CI_Controller {
         }
     }
 
-    public function favs($action = "show") {
+    public function favs($action = "show")
+    {
 
         if ($this->session->userdata('loggedIn')) {
             if ($action === 'change') {
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('title' => 'Lemmikud - '));
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
                 $this->load->view('lemmikud_muuda_view');
                 $this->load->view('templates/footer');
 
             } else { //$action === 'show'
 
-                $this->load->view('templates/header');
+                $this->load->view('templates/header', array('title' => 'Lemmikud - '));
                 $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
                 $toidud = $this->Data_model->get_toidud("tartu");  //TODO siia panna filter
                 $this->load->view('lemmikud_view', array('toidud' => $toidud));
@@ -209,10 +219,11 @@ class Home extends CI_Controller {
         }
     }
 
-    public function user() {
+    public function user()
+    {
         if ($this->session->userdata('loggedIn')) {
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('title' => 'Kasutaja - '));
             $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
             $this->load->view('sinuandmed_view', array('usertype' => $this->session->userdata('usertype')));
             $this->load->view('templates/footer');
@@ -222,10 +233,11 @@ class Home extends CI_Controller {
         }
     }
 
-    public function foods() {
+    public function foods()
+    {
         if ($this->session->userdata('loggedIn') && $this->session->userdata('usertype') === 'arikasutaja') {
 
-            $this->load->view('templates/header');
+            $this->load->view('templates/header', array('title' => 'Toidud'));
             $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
             $this->load->view('sinu_toidud_view');
             $this->load->view('templates/footer');
@@ -259,14 +271,31 @@ class Home extends CI_Controller {
         $this->email->send();
     }
 
-	public function ajax_load_tallinn() {
+    public function ajax_load_tallinn()
+    {
         $toidud = $this->Data_model->get_toidud("tallinn");
         echo $toidud;
     }
 
-    public function ajax_load_tartu() {
+    public function ajax_load_tartu()
+    {
         $toidud = $this->Data_model->get_toidud("tartu");
         echo $toidud;
     }
 
+    public function statistika()
+    {
+        $toite = $this->Data_model->get_count_toidud();
+
+
+        $this->load->view('templates/header', array('title' => 'Statistika - '));
+        $this->load->view('navbar_view', array('loggedIn' => $this->session->userdata('loggedIn'), 'name' => $this->session->userdata('name'), 'usertype' => $this->session->userdata('usertype')));
+        $this->load->view('statistika_view', array('toite' => $toite));
+        $this->load->view('templates/footer');
+    }
+
+
+
+
 }
+
