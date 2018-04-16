@@ -56,6 +56,6 @@ if(isset($_SESSION['lang'])){
 </form>
 </div>
 <!--enne webhosti üleslaadimist tuleb javascripti failides aadress ära muuta (ja googleusercontent ka)-->
-<img class="img-responsive" style="width: 100%" src="<?php echo base_url('images/paevakad.png');?>" alt="Päevakad">
+<img data-hash="image" class="img-responsive" style="width: 100%" src="<?php echo base_url('images/paevakad.png');?>" alt="Päevakad">
 
 
