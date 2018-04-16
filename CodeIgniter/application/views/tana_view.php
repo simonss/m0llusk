@@ -2,8 +2,8 @@
 
 Tartu
 <label class="switch">
-    <input type="checkbox">
-    <div class="slider"></div>
+    WCAG<input type="checkbox"><!--see 'WCAG' on siin real tähtis!-->
+    <span class="slider"></span>
 </label>
 Tallinn
 

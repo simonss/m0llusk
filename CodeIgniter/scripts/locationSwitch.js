@@ -21,7 +21,7 @@ function loadTallinn() {
             location.href="#Tallinn";
         }
     };
-    xhttp.open("GET", "http://localhost/Codeigniter/index.php/Home/ajax_load_tallinn", true);
+    xhttp.open("GET", "https://paevakad1.000webhostapp.com/index.php/Home/ajax_load_tallinn", true);
     xhttp.send();
 }
 
@@ -35,7 +35,7 @@ function loadTartu() {
             location.href="#Tartu";
         }
     };
-    xhttp.open("GET", "http://localhost/Codeigniter/index.php/Home/ajax_load_tartu", true);
+    xhttp.open("GET", "https://paevakad1.000webhostapp.com/index.php/Home/ajax_load_tartu", true);
     xhttp.send();
 }
 
