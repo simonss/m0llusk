@@ -3,7 +3,7 @@
 		<ul class="nav navbar-nav">
 			<li><a href="<?php echo base_url('index.php/Home') ?>"  <?php if($this->uri->segment(1)=="Home"){echo 'class="active"';}?> title="Täna"><?= _TÄNA ?></a></li>
 			<li><a href="<?php echo  base_url('index.php/Home/homme')?>" <?php if($this->uri->segment(1)=="homme"){echo 'class="active"';}?> title="Homme"><?=_HOMME?></a></li>
-            <li><a href="<?php echo  base_url('index.php/Home/#')?>" <?php if($this->uri->segment(1)=="#"){echo 'class="active"';}?> title="Otsing"><?=_OTSING ?></a></li>
+            <!--<li><a href="<?php echo  base_url('index.php/Home/#')?>" <?php if($this->uri->segment(1)=="#"){echo 'class="active"';}?> title="Otsing"><?=_OTSING ?></a></li>-->
 
             <?php if ($loggedIn) {
                 echo "<li><a href=\"".base_url('index.php/Home/favs')."\" title='Lemmikud'>"?><?=_LEMMIKUD?><?php echo "</a></li>";
