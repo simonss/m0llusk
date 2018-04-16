@@ -12,3 +12,4 @@ define("_ANDMED", "Your data");
 define("_TOIDUD", "Your food");
 define("_NAME", "Logged in as: ");
 define("_LOGOUT", "Logout");
+define("_VALIKEEL", "Select language");

@@ -12,3 +12,4 @@ define("_ANDMED", "Sinu andmed");
 define("_TOIDUD", "Sinu toidud");
 define("_NAME", "Logitud sisse kui: ");
 define("_LOGOUT", "Logi välja");
+define("_VALIKEEL", "Vali keel");
