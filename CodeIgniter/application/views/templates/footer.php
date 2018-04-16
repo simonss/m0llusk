@@ -5,9 +5,9 @@
 			<div class="col-sm-1"></div>
 			<div class="col-sm-4">
 				<h2 style="color: #acada5">Päevakad</h2>
-				<p class="text-left" style="color: #acada5"><strong>Aadress: </strong>Juhan Liivi 2, Tartu</p>
-				<p class="text-left" style="color: #acada5"><strong>Meil: </strong>paevakad@gmail.com</p>
-                <p class="text-left" style="color: #acada5"><a href="<?php echo base_url('index.php/Home/statistika');?>" title="Statsistika andmete ja kasutajate kohta"><strong>Statistika</strong></a></p>
+				<p class="text-left" style="color: #acada5"><strong><?=_AADRESS?>: </strong>Juhan Liivi 2, Tartu</p>
+				<p class="text-left" style="color: #acada5"><strong><?=_MEIL?>: </strong>paevakad@gmail.com</p>
+                <p class="text-left" style="color: #acada5"><a href="<?php echo base_url('index.php/Home/statistika');?>" title="Statsistika andmete ja kasutajate kohta"><strong><?=_STATISTIKA?></strong></a></p>
 			</div>
 			<div class="col-sm-6"><div id="map" style="width:100%;height: 300px;"></div></div>
 			<div class="col-sm-1"></div>
