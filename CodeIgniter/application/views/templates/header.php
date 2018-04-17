@@ -25,6 +25,7 @@
     echo ' onload="'.$script.'"';
 }
 
+
 // Set Language variable
 if(isset($_GET['lang']) && !empty($_GET['lang'])){
 	$_SESSION['lang'] = $_GET['lang'];
@@ -48,8 +49,10 @@ if(isset($_SESSION['lang'])){
 	}
 </script>
 <div style="background-color: #222222">
-<form method='get' action='' id='form_lang' style="float: right">
-	<?=_VALIKEEL?> : <select name='lang' onchange='changeLang();' >
+<form method='get' id='form_lang' style="float: right">
+    <p style="background-color:#ffffff;color:#000000;">
+        <label for="lang"><?=_VALIKEEL?> : </label></p>
+    <select name='lang' id='lang' onchange='changeLang();' >
 		<option value='eng' <?php if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'eng'){ echo "selected"; } ?> >English</option>
 		<option value='est' <?php if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'est'){ echo "selected"; } ?> >Estonian</option>
 	</select>
