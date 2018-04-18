@@ -21,10 +21,44 @@
     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('styles/SwitchButton.css')?>">
 </head>
-<body<?php if (!empty($script)) {
+<body <?php if (!empty($script)) {
     echo ' onload="'.$script.'"';
 }
+
+
+// Set Language variable
+if(isset($_GET['lang']) && !empty($_GET['lang'])){
+	$_SESSION['lang'] = $_GET['lang'];
+
+	if(isset($_SESSION['lang']) && $_SESSION['lang'] != $_GET['lang']){
+		echo "<script type='text/javascript'> location.reload(); </script>";
+	}
+}
+
+// Include Language file
+if(isset($_SESSION['lang'])){
+	include "lang_".$_SESSION['lang'].".php";
+}else{
+	include "lang_est.php";
+}
 ?>>
-enne webhosti üleslaadimist tuleb javascripti failides aadress ära muuta (ja googleusercontent ka)
-<img class="img-responsive" style="width: 100%" src="<?php echo base_url('images/paevakad.png');?>" alt="Päevakad">
+
+<script>
+	function changeLang(){
+		document.getElementById('form_lang').submit();
+	}
+</script>
+<div style="background-color: #222222">
+<form method='get' id='form_lang' style="float: right">
+    <p style="background-color:#ffffff;color:#000000;">
+        <label for="lang"><?=_VALIKEEL?> : </label></p>
+    <select name='lang' id='lang' onchange='changeLang();' >
+		<option value='eng' <?php if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'eng'){ echo "selected"; } ?> >English</option>
+		<option value='est' <?php if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'est'){ echo "selected"; } ?> >Estonian</option>
+	</select>
+</form>
+</div>
+<!--enne webhosti üleslaadimist tuleb javascripti failides aadress ära muuta (ja googleusercontent ka)-->
+<img data-hash="image" class="img-responsive" style="width: 100%" src="<?php echo base_url('images/paevakad.png');?>" alt="Päevakad">
+
 
