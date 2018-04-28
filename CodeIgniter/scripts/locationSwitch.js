@@ -21,7 +21,8 @@ function loadTallinn() {
             location.href="#Tallinn";
         }
     };
-    xhttp.open("GET", "https://paevakad1.000webhostapp.com/index.php/Home/ajax_load_tallinn", true);
+    //xhttp.open("GET", "https://paevakad1.000webhostapp.com/index.php/Home/ajax_load_tallinn", true); // TODO change for localhost / webhost
+    xhttp.open("GET", "http://localhost/Codeigniter/index.php/Home/ajax_load_tallinn", true);
     xhttp.send();
 }
 
@@ -35,7 +36,25 @@ function loadTartu() {
             location.href="#Tartu";
         }
     };
-    xhttp.open("GET", "https://paevakad1.000webhostapp.com/index.php/Home/ajax_load_tartu", true);
+    //xhttp.open("GET", "https://paevakad1.000webhostapp.com/index.php/Home/ajax_load_tartu", true); // TODO change for localhost / webhost
+    xhttp.open("GET", "http://localhost/Codeigniter/index.php/Home/ajax_load_tartu", true);
+    xhttp.send();
+}
+
+function isNewEntries() {
+    console.log("Checking");
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("New Entries: " + this.responseText);
+            if (this.responseText === 'true') {
+                loadCity();
+            }
+            setTimeout(isNewEntries, 60*1000);
+        }
+    };
+    //xhttp.open("GET", "https://paevakad1.000webhostapp.com/index.php/Home/ajax_load_tallinn", true); // TODO change for localhost / webhost
+    xhttp.open("GET", "http://localhost/Codeigniter/index.php/Home/ajax_check_new", true);
     xhttp.send();
 }
 
@@ -56,6 +75,7 @@ function parseXML(xml) {
     }
     document.getElementById("toidud_data").innerHTML = result;
 
+
 }
 
 function loadCity() {
@@ -71,3 +91,5 @@ function loadCity() {
         loadTartu();
     }
 }
+
+window.setTimeout(isNewEntries(), 60*1000);
