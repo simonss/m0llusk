@@ -283,6 +283,17 @@ class Home extends CI_Controller
         echo $toidud;
     }
 
+    public function ajax_check_new()
+    {
+        $toite = $this->Data_model->get_count_toidud();
+        if ($toite != $this->session->userdata('ajaxcount')) {
+            echo 'true';
+        } else {
+            echo 'false';
+        };
+        $this->session->set_userdata(array('ajaxcount' => $toite));
+    }
+
     public function statistika()
     {
         $toite = $this->Data_model->get_count_toidud();

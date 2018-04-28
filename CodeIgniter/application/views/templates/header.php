@@ -51,11 +51,12 @@ if(isset($_SESSION['lang'])){
 <div style="background-color: #222222">
 <form method='get' id='form_lang' style="float: right">
     <p style="background-color:#ffffff;color:#000000;">
-        <label for="lang"><?=_VALIKEEL?> : </label></p>
+        <label for="lang"><?=_VALIKEEL?> : </label>
     <select name='lang' id='lang' onchange='changeLang();' >
 		<option value='eng' <?php if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'eng'){ echo "selected"; } ?> >English</option>
 		<option value='est' <?php if(isset($_SESSION['lang']) && $_SESSION['lang'] == 'est'){ echo "selected"; } ?> >Estonian</option>
 	</select>
+    </p>
 </form>
 </div>
 <!--enne webhosti üleslaadimist tuleb javascripti failides aadress ära muuta (ja googleusercontent ka)-->

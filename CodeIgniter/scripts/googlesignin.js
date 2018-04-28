@@ -11,12 +11,14 @@ function onSignIn(googleUser) {
     //if (action == 'register') {
     //    xhr.open('POST', 'http://localhost/Codeigniter/index.php/Home/login_google/register');
     //} else {
-    xhr.open('POST', 'https://paevakad1.000webhostapp.com/index.php/Home/login_google/');
+    //xhr.open('POST', 'https://paevakad1.000webhostapp.com/index.php/Home/login_google/'); // TODO change for localhost / webhost
+    xhr.open('POST', 'http://localhost/Codeigniter/index.php/Home/login_google/');
     //}
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
         console.log('Signed in as: ' + xhr.responseText);
-        location.href="https://paevakad1.000webhostapp.com/index.php/";
+        //location.href="https://paevakad1.000webhostapp.com/index.php/"; // TODO change for localhost / webhost
+        location.href="http://localhost/Codeigniter/index.php/";
     };
     xhr.send('idtoken=' + id_token + '&email=' + email);
 }
