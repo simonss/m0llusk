@@ -1,4 +1,4 @@
-<script src="<?php echo base_url('scripts/locationSwitch.js')?>"></script>
+<script src="<?php echo base_url('scripts/locationSwitch.js')?>" defer></script>
 
 Tartu
 <label class="switch">

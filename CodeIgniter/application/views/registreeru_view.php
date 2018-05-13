@@ -1,4 +1,4 @@
-<script src="<?php echo base_url('scripts/registerradios.js')?>"></script>
+<script src="<?php echo base_url('scripts/registerradios.js')?>" defer></script>
 <form class="form-horizontal" action="<?php echo base_url('index.php/Home/register_submit/');?>" method="post">
     <div class="col-sm-offset-1 col-sm-10">
         <input type="radio" name="usertype" value="tavakasutaja" onclick="kasutajatyyp();" checked> Tavakasutaja<a href="#" data-toggle="tooltip" data-placement="right" title="Kui olete tavakasutaja, siis märgistage see.">(?)</a>
